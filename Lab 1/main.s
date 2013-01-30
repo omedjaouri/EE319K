@@ -29,6 +29,7 @@
 ;For more information about my classes, my research, and my books, see
 ;http://users.ece.utexas.edu/~valvano/
 
+; Making Memory Locations of the Port easier to use.
 GPIO_PORTG2        EQU 0x40026010 
 GPIO_PORTG_DATA_R  EQU 0x400263FC 
 GPIO_PORTG_DIR_R   EQU 0x40026400 
@@ -66,16 +67,17 @@ Start  LDR R2,=M       ; R2 = &M, R2 points to M
 	   ORR R1, R1, #0x1C
 	   STR R1, [R0]
 	   ; Loop unto infinity.
+	   ; Reading Data from PG3 and PG4
 read   LDR R0, =GPIO_PORTG_DATA_R
        LDR R1, [R0]
-	   
+	   ; Logic Operatons: PG2=(not(PG3)) and (not(PG4))
 	   AND R2, R1, #0x10
 	   AND R1, R1, #0x08
 	   ASR R1, R1, #1
 	   ASR R2, R2, #2
 	   ORR R1, R1, R2
 	   EOR R1, #0x04
-	   
+	   ; Storing Data to PG2
 	   LDR R0, =GPIO_PORTG2
 	   STR R1, [R0]
 	   B   read
