@@ -11,7 +11,7 @@
 ### ADS-LD Output File: 'SimpleProject.axf'
 ### ADS-LD Command File: 'SimpleProject.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'SimpleProject.lnp', Handle=0x000003DC
+### Creating CmdFile 'SimpleProject.lnp', Handle=0x00000838
 ### Writing '.lnp' file
 ### ADS-LD Command file 'SimpleProject.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

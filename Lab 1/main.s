@@ -39,22 +39,21 @@ GPIO_PORTG_DEN_R   EQU 0x4002651C
 SYSCTL_RCGC2_R     EQU 0x400FE108 
 SYSCTL_RCGC2_GPIOG EQU 0x00000040   ; port G Clock Gating Control 
 
-       THUMB	
-       AREA    DATA, ALIGN=2
-M      SPACE   4
-       ALIGN          
+       THUMB
        AREA    |.text|, CODE, READONLY, ALIGN=2
        EXPORT  Start
-Start  LDR R2,=M       ; R2 = &M, R2 points to M
-       MOV R0,#1       ; Initial seed
-       STR R0,[R2]     ; M=1
        ; Initialize clock.
-       LDR R0, =SYSCTL_RCGC2_R
+Start  LDR R0, =SYSCTL_RCGC2_R
 	   LDR R1, =SYSCTL_RCGC2_GPIOG
 	   STR R1, [R0]
 	   ; Wait two bus cycles.
 	   NOP
 	   NOP
+	   ; Disable alternate function.
+	   LDR R0, = GPIO_PORTG_AFSEL_R
+	   LDR R1, [R0]
+	   BIC R1, R1, #0x1C
+	   STR R1, [R0]
 	   ; Update PORTG direction register.
 	   LDR R0, =GPIO_PORTG_DIR_R
 	   LDR R1, [R0]
@@ -68,9 +67,9 @@ Start  LDR R2,=M       ; R2 = &M, R2 points to M
 	   STR R1, [R0]
 	   ; Loop unto infinity.
 	   ; Reading Data from PG3 and PG4
-read   LDR R0, =GPIO_PORTG_DATA_R
+update LDR R0, =GPIO_PORTG_DATA_R
        LDR R1, [R0]
-	   ; Logic Operatons: PG2=(not(PG3)) and (not(PG4))
+	   ; Logic Operation: PG2=not(PG3 or PG4)
 	   AND R2, R1, #0x10
 	   AND R1, R1, #0x08
 	   ASR R1, R1, #1
@@ -80,7 +79,7 @@ read   LDR R0, =GPIO_PORTG_DATA_R
 	   ; Storing Data to PG2
 	   LDR R0, =GPIO_PORTG2
 	   STR R1, [R0]
-	   B   read
+	   B   update
        ALIGN      
        END  
            
