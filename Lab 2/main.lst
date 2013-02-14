@@ -55,9 +55,9 @@ ARM Macro Assembler    Page 1
    25 00000000 00002ED0 
                        SYSTICK_DELAY_1MS
                                EQU              0x00002ED0
-   26 00000000 00003FF0 
+   26 00000000 00000BB7 
                        DELAY_1MS
-                               EQU              0x00003FF0
+                               EQU              0x00000BB7
    27 00000000         
    28 00000000         
    29 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
@@ -107,12 +107,12 @@ ARM Macro Assembler    Page 2
    66 00000044 EA00 0001       AND              R0, R0, R1
    67 00000048 EA4F 1050       LSR              R0, R0, #0x05
    68 0000004C 6018            STR              R0, [R3]
-   69 0000004E F000 F817       BL               SysTick_Wait_1ms
+   69 0000004E F000 F801       BL               Wait_1ms
    70 00000052 E7F2            B                loop
    71 00000054         
    72 00000054         Wait_1ms
    73 00000054 B503            PUSH             {R0, R1, LR}
-   74 00000056 F643 71F0       LDR              R1, =DELAY_1MS
+   74 00000056 F640 31B7       LDR              R1, =DELAY_1MS
    75 0000005A 4608            MOV              R0, R1
    76 0000005C         busy_loop
    77 0000005C 1E40            SUBS             R0, R0, #0x01
@@ -210,8 +210,8 @@ Symbol: SysTick_Wait_1ms
    Definitions
       At line 99 in file main.s
    Uses
-      At line 69 in file main.s
-Comment: SysTick_Wait_1ms used once
+      None
+Comment: SysTick_Wait_1ms unused
 SysTick_Wait_1ms_loop 0000008A
 
 Symbol: SysTick_Wait_1ms_loop
@@ -226,8 +226,8 @@ Symbol: Wait_1ms
    Definitions
       At line 72 in file main.s
    Uses
-      None
-Comment: Wait_1ms unused
+      At line 69 in file main.s
+Comment: Wait_1ms used once
 busy_loop 0000005C
 
 Symbol: busy_loop
@@ -257,7 +257,7 @@ Comment: loop used once
 ARM Macro Assembler    Page 1 Alphabetic symbol ordering
 Absolute symbols
 
-DELAY_1MS 00003FF0
+DELAY_1MS 00000BB7
 
 Symbol: DELAY_1MS
    Definitions
