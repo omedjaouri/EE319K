@@ -21,7 +21,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>SimpleProject</TargetName>
+    <TargetName>Lab2</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -123,7 +123,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGDARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(110=-1,-1,-1,-1,0)(100=-1,-1,-1,-1,0)(101=-1,-1,-1,-1,0)(102=-1,-1,-1,-1,0)(103=-1,-1,-1,-1,0)(104=-1,-1,-1,-1,0)(105=-1,-1,-1,-1,0)(106=653,167,1244,407,0)(107=-1,-1,-1,-1,0)(161=-1,-1,-1,-1,0)(162=-1,-1,-1,-1,0)(163=-1,-1,-1,-1,0)(164=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(151=-1,-1,-1,-1,0)(152=-1,-1,-1,-1,0)(1011=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)(1013=-1,-1,-1,-1,0)(171=-1,-1,-1,-1,0)(172=-1,-1,-1,-1,0)(173=-1,-1,-1,-1,0)(1014=-1,-1,-1,-1,0)(1016=-1,-1,-1,-1,0)(136=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(110=81,113,698,535,0)(100=-1,-1,-1,-1,0)(101=-1,-1,-1,-1,0)(102=-1,-1,-1,-1,0)(103=-1,-1,-1,-1,0)(104=-1,-1,-1,-1,0)(105=-1,-1,-1,-1,0)(106=769,495,1360,739,0)(107=-1,-1,-1,-1,0)(161=-1,-1,-1,-1,0)(162=-1,-1,-1,-1,0)(163=-1,-1,-1,-1,0)(164=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(151=-1,-1,-1,-1,0)(152=-1,-1,-1,-1,0)(1011=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)(1013=-1,-1,-1,-1,0)(171=-1,-1,-1,-1,0)(172=-1,-1,-1,-1,0)(173=-1,-1,-1,-1,0)(1014=-1,-1,-1,-1,0)(1016=-1,-1,-1,-1,0)(136=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -136,28 +136,9 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>R1,0x10</ItemText>
-        </Ww>
-        <Ww>
-          <count>1</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>R2</ItemText>
+          <ItemText>R5</ItemText>
         </Ww>
       </WatchWindow1>
-      <WatchWindow2>
-        <Ww>
-          <count>0</count>
-          <WinNumber>2</WinNumber>
-          <ItemText>R2</ItemText>
-        </Ww>
-      </WatchWindow2>
-      <MemoryWindow1>
-        <Mm>
-          <WinNumber>1</WinNumber>
-          <SubType>2</SubType>
-          <ItemText>0x20000000</ItemText>
-        </Mm>
-      </MemoryWindow1>
       <DebugFlag>
         <trace>0</trace>
         <periodic>0</periodic>
@@ -175,7 +156,7 @@
         <AscS3>0</AscS3>
         <aSer3>0</aSer3>
         <eProf>0</eProf>
-        <aLa>0</aLa>
+        <aLa>1</aLa>
         <aPa1>0</aPa1>
         <AscS4>0</AscS4>
         <aSer4>0</aSer4>
@@ -192,8 +173,13 @@
       <LogicAnalyzers>
         <Wi>
           <IntNumber>0</IntNumber>
-          <FirstString>(PORTG &gt;&gt; 2 &amp; 0x4) &gt;&gt; 2</FirstString>
-          <SecondString>0080000000000000000000000000000000E06F4000000000000000000000000000000000504F525447203E3E2032000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000000000000000F03F000000000000000000000000000000000000000080010000</SecondString>
+          <FirstString>((PORTG &amp; 0x00000080) &gt;&gt; 7 &amp; 0x80) &gt;&gt; 7</FirstString>
+          <SecondString>0000000000000000000000000000000000E06F400100000000000000000000000000000028504F5254472026203078303030303030383029203E3E2037000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000001000000000000000000E03F000000000000000000000000000000000000000072010000</SecondString>
+        </Wi>
+        <Wi>
+          <IntNumber>1</IntNumber>
+          <FirstString>((PORTG &amp; 0x00000004) &gt;&gt; 2 &amp; 0x4) &gt;&gt; 2</FirstString>
+          <SecondString>FF00000000000000000000000000000000E06F400100000000000000000000000000000028504F5254472026203078303030303030303429203E3E2032000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000000000000000E03F000000000000000000000000000000000000000072010000</SecondString>
         </Wi>
       </LogicAnalyzers>
     </TargetOption>
@@ -211,10 +197,10 @@
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>2</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>31</TopLine>
-      <CurrentLine>9</CurrentLine>
+      <TopLine>148</TopLine>
+      <CurrentLine>149</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Startup.s</PathWithFileName>
       <FilenameWithoutPath>Startup.s</FilenameWithoutPath>
@@ -227,10 +213,10 @@
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>23</ColumnNumber>
+      <ColumnNumber>18</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>32</TopLine>
-      <CurrentLine>53</CurrentLine>
+      <TopLine>64</TopLine>
+      <CurrentLine>107</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.s</PathWithFileName>
       <FilenameWithoutPath>main.s</FilenameWithoutPath>
