@@ -1,0 +1,429 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; main.s
+    2 00000000         ; Your named 
+    3 00000000         ; Runs on LM3S1968
+    4 00000000         ; Lab 2 EE319K Summer 2012
+    5 00000000         ; Toggle on PG2 LED if select switch pressed pressed
+    6 00000000         ; Date Created: May 23, 2012 
+    7 00000000         ; Last Modified: 6/4/2012 
+    8 00000000         
+    9 00000000         ; "Status" LED connected to PG2     positive logic
+   10 00000000         ; "Select" button connected to PG7  negative logic
+   11 00000000         
+   12 00000000         
+   13 00000000 400243FC 
+                       GPIO_PORTE_DATA_R
+                               EQU              0x400243FC
+   14 00000000 40024420 
+                       GPIO_PORTE_AFSEL_R
+                               EQU              0x40024420
+   15 00000000 40024400 
+                       GPIO_PORTE_DIR_R
+                               EQU              0x40024400
+   16 00000000 40024510 
+                       GPIO_PORTE_PUR_R
+                               EQU              0x40024510
+   17 00000000 40024514 
+                       GPIO_PORTE_PDR_R
+                               EQU              0x40024514
+   18 00000000 4002451C 
+                       GPIO_PORTE_DEN_R
+                               EQU              0x4002451C
+   19 00000000 40024008 
+                       GPIO_PORTE_PIN_1
+                               EQU              0x40024008
+   20 00000000         
+   21 00000000 400FE108 
+                       SYSCTL_RCGC2_R
+                               EQU              0x400FE108
+   22 00000000 00000010 
+                       SYSCTL_RCGC2_GPIOE
+                               EQU              0x00000010
+   23 00000000 E000E010 
+                       NVIC_ST_CTRL_R
+                               EQU              0xE000E010
+   24 00000000 E000E014 
+                       NVIC_ST_RELOAD_R
+                               EQU              0xE000E014
+   25 00000000 E000E018 
+                       NVIC_ST_CURRENT_R
+                               EQU              0xE000E018
+   26 00000000 00FFFFFF 
+                       NVIC_ST_RELOAD_M
+                               EQU              0x00FFFFFF
+   27 00000000         
+   28 00000000 00002ED0 
+                       SYSTICK_DELAY_1MS
+                               EQU              0x00002ED0
+   29 00000000 00000BB7 
+                       DELAY_1MS
+                               EQU              0x00000BB7
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   30 00000000         
+   31 00000000         
+   32 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
+2
+   33 00000000                 THUMB
+   34 00000000                 EXPORT           Start
+   35 00000000         
+   36 00000000         Start
+   37 00000000         ; Initialize clock
+   38 00000000 492B            LDR              R1, =SYSCTL_RCGC2_R
+   39 00000002 F04F 0010       LDR              R0, =SYSCTL_RCGC2_GPIOE
+   40 00000006 6008            STR              R0, [R1]
+   41 00000008 BF00            NOP
+   42 0000000A BF00            NOP
+   43 0000000C F000 F834       BL               SysTick_Init
+   44 00000010         ; Disable alternate function (pins 0&1)
+   45 00000010 4928            LDR              R1, =GPIO_PORTE_AFSEL_R
+   46 00000012 6808            LDR              R0, [R1]
+   47 00000014 F020 0003       BIC              R0, #0x03
+   48 00000018 6008            STR              R0, [R1]
+   49 0000001A         ; Set pull down on PORTE pin 0.
+   50 0000001A 4927            LDR              R1, =GPIO_PORTE_PDR_R
+   51 0000001C 6808            LDR              R0, [R1]
+   52 0000001E F040 0001       ORR              R0, #0x01
+   53 00000022 6008            STR              R0, [R1]
+   54 00000024         ; Set direction register (0: input; 1: output)
+   55 00000024 4925            LDR              R1, =GPIO_PORTE_DIR_R
+   56 00000026 6808            LDR              R0, [R1]
+   57 00000028 F020 0001       BIC              R0, #0x01
+   58 0000002C F040 0002       ORR              R0, #0x02
+   59 00000030 6008            STR              R0, [R1]
+   60 00000032         ; Digital enable (pins 0&1)
+   61 00000032 4923            LDR              R1, =GPIO_PORTE_DEN_R
+   62 00000034 6808            LDR              R0, [R1]
+   63 00000036 F040 0003       ORR              R0, #0x03
+   64 0000003A 6008            STR              R0, [R1]
+   65 0000003C         ; Load initial toggle value
+   66 0000003C F04F 0101       MOV              R1, #0x01
+   67 00000040 4A20            LDR              R2, =GPIO_PORTE_DATA_R
+   68 00000042 4B21            LDR              R3, =GPIO_PORTE_PIN_1
+   69 00000044         loop
+   70 00000044 6810            LDR              R0, [R2]
+   71 00000046         ; Toggle R1 bit 0
+   72 00000046 F081 0101       EOR              R1, R1, #0x01
+   73 0000004A EA61 0000       ORN              R0, R1, R0
+   74 0000004E EA4F 0040       LSL              R0, R0, #0x01
+   75 00000052 6018            STR              R0, [R3]
+   76 00000054 F000 F808       BL               Wait_8Hz
+   77 00000058 E7F4            B                loop
+   78 0000005A         
+   79 0000005A         Wait_1ms
+   80 0000005A B503            PUSH             {R0, R1, LR}
+   81 0000005C F640 31B7       LDR              R1, =DELAY_1MS
+   82 00000060 4608            MOV              R0, R1
+   83 00000062         busy_loop
+   84 00000062 1E40            SUBS             R0, R0, #0x01
+   85 00000064 D1FD            BNE              busy_loop
+   86 00000066 BD03            POP              {R0, R1, PC}
+   87 00000068         
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   88 00000068         Wait_8Hz
+   89 00000068 B501            PUSH             {R0, LR}
+   90 0000006A F04F 003E       MOV              R0, #62
+   91 0000006E         Wait_1s_repeat
+   92 0000006E F7FF FFF4       BL               Wait_1ms
+   93 00000072 1E40            SUBS             R0, R0, #0x01
+   94 00000074 D1FB            BNE              Wait_1s_repeat
+   95 00000076 BD01            POP              {R0, PC}
+   96 00000078         
+   97 00000078         SysTick_Init
+   98 00000078         ; Disable SysTick
+   99 00000078 4814            LDR              R0, =NVIC_ST_CTRL_R
+  100 0000007A F04F 0100       MOV              R1, #0x00
+  101 0000007E 6001            STR              R1, [R0]
+  102 00000080         ; Set RELOAD Value
+  103 00000080 4913            LDR              R1, =NVIC_ST_RELOAD_R
+  104 00000082 4A14            LDR              R2, =NVIC_ST_RELOAD_M
+  105 00000084 600A            STR              R2, [R1]
+  106 00000086         ; Reset CURRENT
+  107 00000086 4914            LDR              R1, =NVIC_ST_CURRENT_R
+  108 00000088 F04F 0200       MOV              R2, #0x00
+  109 0000008C 600A            STR              R2, [R1]
+  110 0000008E         ; Initialize SysTick
+  111 0000008E F04F 0105       MOV              R1, #0x05
+  112 00000092 6001            STR              R1, [R0]
+  113 00000094 4770            BX               LR
+  114 00000096         
+  115 00000096         SysTick_Wait_1ms
+  116 00000096 B50F            PUSH             {R0, R1, R2, R3, LR}
+  117 00000098         ; Loads first value of clock
+  118 00000098 490F            LDR              R1, =NVIC_ST_CURRENT_R
+  119 0000009A 680A            LDR              R2, [R1]
+  120 0000009C F642 60D0       LDR              R0, =SYSTICK_DELAY_1MS
+  121 000000A0         SysTick_Wait_1ms_loop
+  122 000000A0 680B            LDR              R3, [R1]
+  123 000000A2 EBA2 0303       SUB              R3, R2, R3
+  124 000000A6 F023 437F       AND              R3, R3, #0x00FFFFFF
+  125 000000AA 4283            CMP              R3, R0
+  126 000000AC D9F8            BLS              SysTick_Wait_1ms_loop
+  127 000000AE BD0F            POP              {R0, R1, R2, R3, PC}
+  128 000000B0         
+  129 000000B0                 ALIGN                        ; make sure the end
+                                                             of this section is
+                                                             aligned
+  130 000000B0                 END                          ; end of file
+              400FE108 
+              40024420 
+              40024514 
+              40024400 
+              4002451C 
+              400243FC 
+              40024008 
+              E000E010 
+              E000E014 
+              00FFFFFF 
+              E000E018 
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=main.d -
+omain.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Lu
+minary --list=main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 32 in file main.s
+   Uses
+      None
+Comment: .text unused
+Start 00000000
+
+Symbol: Start
+   Definitions
+      At line 36 in file main.s
+   Uses
+      At line 34 in file main.s
+Comment: Start used once
+SysTick_Init 00000078
+
+Symbol: SysTick_Init
+   Definitions
+      At line 97 in file main.s
+   Uses
+      At line 43 in file main.s
+Comment: SysTick_Init used once
+SysTick_Wait_1ms 00000096
+
+Symbol: SysTick_Wait_1ms
+   Definitions
+      At line 115 in file main.s
+   Uses
+      None
+Comment: SysTick_Wait_1ms unused
+SysTick_Wait_1ms_loop 000000A0
+
+Symbol: SysTick_Wait_1ms_loop
+   Definitions
+      At line 121 in file main.s
+   Uses
+      At line 126 in file main.s
+Comment: SysTick_Wait_1ms_loop used once
+Wait_1ms 0000005A
+
+Symbol: Wait_1ms
+   Definitions
+      At line 79 in file main.s
+   Uses
+      At line 92 in file main.s
+Comment: Wait_1ms used once
+Wait_1s_repeat 0000006E
+
+Symbol: Wait_1s_repeat
+   Definitions
+      At line 91 in file main.s
+   Uses
+      At line 94 in file main.s
+Comment: Wait_1s_repeat used once
+Wait_8Hz 00000068
+
+Symbol: Wait_8Hz
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+   Definitions
+      At line 88 in file main.s
+   Uses
+      At line 76 in file main.s
+Comment: Wait_8Hz used once
+busy_loop 00000062
+
+Symbol: busy_loop
+   Definitions
+      At line 83 in file main.s
+   Uses
+      At line 85 in file main.s
+Comment: busy_loop used once
+loop 00000044
+
+Symbol: loop
+   Definitions
+      At line 69 in file main.s
+   Uses
+      At line 77 in file main.s
+Comment: loop used once
+10 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+DELAY_1MS 00000BB7
+
+Symbol: DELAY_1MS
+   Definitions
+      At line 29 in file main.s
+   Uses
+      At line 81 in file main.s
+Comment: DELAY_1MS used once
+GPIO_PORTE_AFSEL_R 40024420
+
+Symbol: GPIO_PORTE_AFSEL_R
+   Definitions
+      At line 14 in file main.s
+   Uses
+      At line 45 in file main.s
+Comment: GPIO_PORTE_AFSEL_R used once
+GPIO_PORTE_DATA_R 400243FC
+
+Symbol: GPIO_PORTE_DATA_R
+   Definitions
+      At line 13 in file main.s
+   Uses
+      At line 67 in file main.s
+Comment: GPIO_PORTE_DATA_R used once
+GPIO_PORTE_DEN_R 4002451C
+
+Symbol: GPIO_PORTE_DEN_R
+   Definitions
+      At line 18 in file main.s
+   Uses
+      At line 61 in file main.s
+Comment: GPIO_PORTE_DEN_R used once
+GPIO_PORTE_DIR_R 40024400
+
+Symbol: GPIO_PORTE_DIR_R
+   Definitions
+      At line 15 in file main.s
+   Uses
+      At line 55 in file main.s
+Comment: GPIO_PORTE_DIR_R used once
+GPIO_PORTE_PDR_R 40024514
+
+Symbol: GPIO_PORTE_PDR_R
+   Definitions
+      At line 17 in file main.s
+   Uses
+      At line 50 in file main.s
+Comment: GPIO_PORTE_PDR_R used once
+GPIO_PORTE_PIN_1 40024008
+
+Symbol: GPIO_PORTE_PIN_1
+   Definitions
+      At line 19 in file main.s
+   Uses
+      At line 68 in file main.s
+Comment: GPIO_PORTE_PIN_1 used once
+GPIO_PORTE_PUR_R 40024510
+
+Symbol: GPIO_PORTE_PUR_R
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Absolute symbols
+
+   Definitions
+      At line 16 in file main.s
+   Uses
+      None
+Comment: GPIO_PORTE_PUR_R unused
+NVIC_ST_CTRL_R E000E010
+
+Symbol: NVIC_ST_CTRL_R
+   Definitions
+      At line 23 in file main.s
+   Uses
+      At line 99 in file main.s
+Comment: NVIC_ST_CTRL_R used once
+NVIC_ST_CURRENT_R E000E018
+
+Symbol: NVIC_ST_CURRENT_R
+   Definitions
+      At line 25 in file main.s
+   Uses
+      At line 107 in file main.s
+      At line 118 in file main.s
+
+NVIC_ST_RELOAD_M 00FFFFFF
+
+Symbol: NVIC_ST_RELOAD_M
+   Definitions
+      At line 26 in file main.s
+   Uses
+      At line 104 in file main.s
+Comment: NVIC_ST_RELOAD_M used once
+NVIC_ST_RELOAD_R E000E014
+
+Symbol: NVIC_ST_RELOAD_R
+   Definitions
+      At line 24 in file main.s
+   Uses
+      At line 103 in file main.s
+Comment: NVIC_ST_RELOAD_R used once
+SYSCTL_RCGC2_GPIOE 00000010
+
+Symbol: SYSCTL_RCGC2_GPIOE
+   Definitions
+      At line 22 in file main.s
+   Uses
+      At line 39 in file main.s
+Comment: SYSCTL_RCGC2_GPIOE used once
+SYSCTL_RCGC2_R 400FE108
+
+Symbol: SYSCTL_RCGC2_R
+   Definitions
+      At line 21 in file main.s
+   Uses
+      At line 38 in file main.s
+Comment: SYSCTL_RCGC2_R used once
+SYSTICK_DELAY_1MS 00002ED0
+
+Symbol: SYSTICK_DELAY_1MS
+   Definitions
+      At line 28 in file main.s
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Absolute symbols
+
+   Uses
+      At line 120 in file main.s
+Comment: SYSTICK_DELAY_1MS used once
+15 symbols
+357 symbols in table
