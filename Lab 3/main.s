@@ -26,7 +26,6 @@ NVIC_ST_CURRENT_R  EQU 0xE000E018
 NVIC_ST_RELOAD_M   EQU 0x00FFFFFF
 
 SYSTICK_DELAY_1MS  EQU 0x00002ED0
-DELAY_1MS		   EQU 0x00000BB7
 
 
       AREA    |.text|, CODE, READONLY, ALIGN=2
@@ -40,7 +39,6 @@ Start
 	STR R0, [R1]
 	NOP
 	NOP
-	BL	SysTick_Init
 	; Disable alternate function (pins 0&1)
 	LDR R1, =GPIO_PORTE_AFSEL_R
 	LDR R0, [R1]
@@ -78,7 +76,7 @@ loop
 
 Wait_1ms
 	PUSH {R0, R1, LR}
-	LDR R1, =DELAY_1MS
+	MOV R1, #0xBB7
 	MOV R0, R1
 busy_loop
 	SUBS R0, R0, #0x01
@@ -93,38 +91,6 @@ Wait_1s_repeat
 	SUBS R0, R0, #0x01
 	BNE Wait_1s_repeat
 	POP {R0, PC}
-	  
-SysTick_Init
-	; Disable SysTick
-	LDR R0, =NVIC_ST_CTRL_R
-	MOV R1, #0x00
-	STR R1, [R0]
-	; Set RELOAD Value
-	LDR R1, =NVIC_ST_RELOAD_R
-	LDR R2, =NVIC_ST_RELOAD_M
-	STR R2, [R1]
-	; Reset CURRENT
-	LDR R1, =NVIC_ST_CURRENT_R
-	MOV R2, #0x00
-	STR R2, [R1]
-	; Initialize SysTick
-	MOV R1, #0x05
-	STR R1, [R0]
-	BX LR
-	
-SysTick_Wait_1ms
-	PUSH {R0, R1, R2, R3, LR}
-	; Loads first value of clock
-	LDR R1, =NVIC_ST_CURRENT_R
-	LDR R2, [R1]
-	LDR R0, =SYSTICK_DELAY_1MS
-SysTick_Wait_1ms_loop
-	LDR R3, [R1]
-	SUB R3, R2, R3
-	AND R3, R3, #0x00FFFFFF
-	CMP R3, R0
-	BLS SysTick_Wait_1ms_loop
-	POP {R0, R1, R2, R3, PC}
 	
     ALIGN      ; make sure the end of this section is aligned
     END        ; end of file

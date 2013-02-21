@@ -1,3 +1,3 @@
 Dependencies for Project 'Lab3', Target 'Lab2': (DO NOT MODIFY !)
 F (.\Startup.s)(0x5125882F)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary --list "Startup.lst" --xref -o "Startup.o" --depend "Startup.d")
-F (.\main.s)(0x5125A041)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary --list "main.lst" --xref -o "main.o" --depend "main.d")
+F (.\main.s)(0x51266ED4)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary --list "main.lst" --xref -o "main.o" --depend "main.d")
