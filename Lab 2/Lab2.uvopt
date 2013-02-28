@@ -218,10 +218,10 @@
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>34</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>75</TopLine>
-      <CurrentLine>77</CurrentLine>
+      <TopLine>4</TopLine>
+      <CurrentLine>20</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.s</PathWithFileName>
       <FilenameWithoutPath>main.s</FilenameWithoutPath>

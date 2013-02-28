@@ -1,4 +1,4 @@
-*** Creating Trace Output File 'Lab2.tra' Ok.
+*** Creating Trace Output File 'Lab3.tra' Ok.
 ### Preparing for ADS-LD.
 ### Creating ADS-LD Command Line
 ### List of Objects: adding '"startup.o"'
@@ -7,13 +7,13 @@
 --cpu Cortex-M3 "startup.o" "main.o" 
 --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
- --list ".\Lab2.map" -o Lab2.axf### Preparing Environment (PrepEnvAds)
-### ADS-LD Output File: 'Lab2.axf'
-### ADS-LD Command File: 'Lab2.lnp'
+ --list ".\Lab3.map" -o Lab3.axf### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'Lab3.axf'
+### ADS-LD Command File: 'Lab3.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'Lab2.lnp', Handle=0x00000404
+### Creating CmdFile 'Lab3.lnp', Handle=0x00000D70
 ### Writing '.lnp' file
-### ADS-LD Command file 'Lab2.lnp' is ready.
+### ADS-LD Command file 'Lab3.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.
 ### ADS-LD: executed with 0 errors
 ### Updating obj list

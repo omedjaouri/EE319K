@@ -21,13 +21,13 @@
   </DaveTm>
 
   <Target>
-    <TargetName>Lab2</TargetName>
+    <TargetName>Lab4</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
-      <CLKADS>8000000</CLKADS>
+      <CLKADS>6000000</CLKADS>
       <OPTTT>
-        <gFlags>1</gFlags>
+        <gFlags>0</gFlags>
         <BeepAtEnd>1</BeepAtEnd>
         <RunSim>1</RunSim>
         <RunTarget>0</RunTarget>
@@ -75,7 +75,7 @@
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
-      <CpuCode>255</CpuCode>
+      <CpuCode>0</CpuCode>
       <DllOpt>
         <SimDllName>SARMCM3.DLL</SimDllName>
         <SimDllArguments></SimDllArguments>
@@ -119,40 +119,16 @@
         <tIfile></tIfile>
         <pMon>BIN\lmidk-agdi.dll</pMon>
       </DebugOpt>
-      <TargetDriverDllRegistry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGDARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(110=81,113,698,535,0)(100=-1,-1,-1,-1,0)(101=-1,-1,-1,-1,0)(102=-1,-1,-1,-1,0)(103=-1,-1,-1,-1,0)(104=771,519,1362,763,1)(105=-1,-1,-1,-1,0)(106=769,495,1360,739,0)(107=-1,-1,-1,-1,0)(161=-1,-1,-1,-1,0)(162=-1,-1,-1,-1,0)(163=-1,-1,-1,-1,0)(164=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(151=-1,-1,-1,-1,0)(152=-1,-1,-1,-1,0)(1011=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)(1013=-1,-1,-1,-1,0)(171=-1,-1,-1,-1,0)(172=-1,-1,-1,-1,0)(173=-1,-1,-1,-1,0)(1014=-1,-1,-1,-1,0)(1016=-1,-1,-1,-1,0)(136=-1,-1,-1,-1,0)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ARMDBGFLAGS</Key>
-          <Name>-T0</Name>
-        </SetRegEntry>
-      </TargetDriverDllRegistry>
       <Breakpoint/>
-      <WatchWindow1>
-        <Ww>
-          <count>0</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>R5</ItemText>
-        </Ww>
-        <Ww>
-          <count>1</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>R0</ItemText>
-        </Ww>
-      </WatchWindow1>
       <DebugFlag>
         <trace>0</trace>
         <periodic>0</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>
         <aPa>0</aPa>
-        <viewmode>1</viewmode>
+        <viewmode>0</viewmode>
         <vrSel>0</vrSel>
         <aSym>0</aSym>
         <aTbox>0</aTbox>
@@ -161,7 +137,7 @@
         <AscS3>0</AscS3>
         <aSer3>0</aSer3>
         <eProf>0</eProf>
-        <aLa>1</aLa>
+        <aLa>0</aLa>
         <aPa1>0</aPa1>
         <AscS4>0</AscS4>
         <aSer4>0</aSer4>
@@ -175,18 +151,6 @@
       </Tracepoint>
       <LintExecutable></LintExecutable>
       <LintConfigFile></LintConfigFile>
-      <LogicAnalyzers>
-        <Wi>
-          <IntNumber>0</IntNumber>
-          <FirstString>((PORTE &amp; 0x00000001) &amp; 0x1) &gt;&gt; 0</FirstString>
-          <SecondString>0000800000000000000000000000000000E06F400100000000000000000000000000000028504F52544520262030783030303030303031290000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000001000000000000000000E03F000000000000000000000000000000000000000078010000</SecondString>
-        </Wi>
-        <Wi>
-          <IntNumber>1</IntNumber>
-          <FirstString>((PORTE &amp; 0x00000002) &gt;&gt; 1 &amp; 0x2) &gt;&gt; 1</FirstString>
-          <SecondString>0000000000000000000000000000000000E06F400100000000000000000000000000000028504F5254452026203078303030303030303229203E3E2031000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000000000000000E03F000000000000000000000000000000000000000078010000</SecondString>
-        </Wi>
-      </LogicAnalyzers>
     </TargetOption>
   </Target>
 
@@ -204,8 +168,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>148</TopLine>
-      <CurrentLine>149</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Startup.s</PathWithFileName>
       <FilenameWithoutPath>Startup.s</FilenameWithoutPath>
@@ -218,13 +182,29 @@
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>8</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>64</TopLine>
-      <CurrentLine>77</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.s</PathWithFileName>
       <FilenameWithoutPath>main.s</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>3</FileNumber>
+      <FileType>2</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Debug</PathWithFileName>
+      <FilenameWithoutPath>Debug</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

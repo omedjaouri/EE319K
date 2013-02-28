@@ -1,0 +1,6 @@
+Dependencies for Project 'Lab3', Target 'Lab4': (DO NOT MODIFY !)
+F (.\Startup.s)(0x512EC25A)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary --list "Startup.lst" --xref -o "Startup.o" --depend "Startup.d")
+F (.\main.s)(0x512EE394)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary --list "main.lst" --xref -o "main.o" --depend "main.d")
+F (.\Debug.s)(0x512EE2BB)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary --list "Debug.lst" --xref -o "Debug.o" --depend "Debug.d")
+F (.\PLL.s)(0x510197D6)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary --list "PLL.lst" --xref -o "PLL.o" --depend "PLL.d")
+F (.\SysTick.s)(0x510197D6)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary --list "SysTick.lst" --xref -o "SysTick.o" --depend "SysTick.d")

@@ -1,9 +1,9 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html><head>
-<title>Static Call Graph - [C:\Users\Omar\Documents\GitHub\EE319K\Lab 3\Lab2.axf]</title></head>
+<title>Static Call Graph - [C:\Users\Omar\Documents\GitHub\EE319K\Lab 4\Lab4.axf]</title></head>
 <body><HR>
-<H1>Static Call Graph for image C:\Users\Omar\Documents\GitHub\EE319K\Lab 3\Lab2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Wed Feb 27 21:53:10 2013
+<H1>Static Call Graph for image C:\Users\Omar\Documents\GitHub\EE319K\Lab 4\Lab4.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Wed Feb 27 22:53:22 2013
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -19,6 +19,12 @@ Functions with no stack information
  <LI><a href="#[3e]">EndCritical</a>
  <LI><a href="#[3f]">WaitForInterrupt</a>
  <LI><a href="#[40]">Start</a>
+ <LI><a href="#[42]">Debug_Init</a>
+ <LI><a href="#[43]">Debug_Capture</a>
+ <LI><a href="#[41]">PLL_Init</a>
+ <LI><a href="#[44]">SysTick_Init</a>
+ <LI><a href="#[46]">SysTick_Wait</a>
+ <LI><a href="#[45]">SysTick_Wait10ms</a>
 </UL>
 </UL>
 <P>
@@ -328,7 +334,37 @@ Global Symbols
 <P><STRONG><a name="[3f]"></a>WaitForInterrupt</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(RESET), UNUSED, KEPT)
 
 <P><STRONG><a name="[40]"></a>Start</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, main.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+<BR><BR>[Calls]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PLL_Init
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Debug_Init
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Debug_Capture
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+</UL>
+
+<P><STRONG><a name="[42]"></a>Debug_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, debug.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[43]"></a>Debug_Capture</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, debug.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[41]"></a>PLL_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, pll.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[44]"></a>SysTick_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, systick.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Debug_Init
+</UL>
+
+<P><STRONG><a name="[46]"></a>SysTick_Wait</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, systick.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait10ms
+</UL>
+
+<P><STRONG><a name="[45]"></a>SysTick_Wait10ms</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, systick.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Wait
 </UL>
 <P>
 <H3>
