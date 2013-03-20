@@ -1,0 +1,151 @@
+ARM Linker, 5.02 [Build 28] [MDK-ARM Lite]
+
+==============================================================================
+
+Section Cross References
+
+    startup.o(RESET) refers to startup.o(STACK) for StackMem
+    startup.o(RESET) refers to lab6.o(.text) for Start
+    lab6.o(DATA) refers (Special) to lcd.o(.text) for LCD_OutChar
+    lab6.o(.text) refers (Special) to lcd.o(.text) for LCD_OutChar
+    lab6.o(.text) refers to pll.o(.text) for PLL_Init
+    lab6.o(.text) refers to io.o(.text) for IO_Init
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing startup.o(HEAP), (0 bytes).
+    Removing startup.o(.text), (0 bytes).
+    Removing lab6.o(DATA), (0 bytes).
+
+3 unused section(s) (total 0 bytes) removed from the image.
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    RESET                                    0x00000000   Section      268  startup.o(RESET)
+    IO.s                                     0x00000000   Number         0  io.o ABSOLUTE
+    LCD.s                                    0x00000000   Number         0  lcd.o ABSOLUTE
+    Startup.s                                0x00000000   Number         0  startup.o ABSOLUTE
+    lab6.s                                   0x00000000   Number         0  lab6.o ABSOLUTE
+    pll.s                                    0x00000000   Number         0  pll.o ABSOLUTE
+    NmiSR                                    0x00000105   Thumb Code     0  startup.o(RESET)
+    FaultISR                                 0x00000107   Thumb Code     0  startup.o(RESET)
+    IntDefaultHandler                        0x00000109   Thumb Code     0  startup.o(RESET)
+    .text                                    0x0000010c   Section      364  lab6.o(.text)
+    Fonts                                    0x0000010c   Data           0  lab6.o(.text)
+    Welcome                                  0x000001c0   Data           8  lab6.o(.text)
+    Symbols                                  0x000001f4   Data           7  lab6.o(.text)
+    Truths                                   0x000001fc   Data           8  lab6.o(.text)
+    TestData                                 0x0000022c   Data          48  lab6.o(.text)
+    TestEnd                                  0x0000025c   Data           4  lab6.o(.text)
+    .text                                    0x00000278   Section      684  lcd.o(.text)
+    OutFixedOFString                         0x00000278   Data           0  lcd.o(.text)
+    .text                                    0x00000524   Section      136  io.o(.text)
+    .text                                    0x000005ac   Section       80  pll.o(.text)
+    STACK                                    0x20000000   Section      256  startup.o(STACK)
+    StackMem                                 0x20000000   Data           0  startup.o(STACK)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv4$P$D$K$B$S$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OSPACE$EBA8$MICROLIB$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __Vectors                                0x00000000   Data           0  startup.o(RESET)
+    Reset_Handler                            0x00000101   Thumb Code     0  startup.o(RESET)
+    Start                                    0x00000145   Thumb Code     4  lab6.o(.text)
+    LCD_Open                                 0x000002cd   Thumb Code     0  lcd.o(.text)
+    LCD_OutChar                              0x0000036d   Thumb Code     0  lcd.o(.text)
+    LCD_Clear                                0x00000391   Thumb Code     0  lcd.o(.text)
+    LCD_GoTo                                 0x000003ad   Thumb Code     0  lcd.o(.text)
+    LCD_OutString                            0x000003c9   Thumb Code     0  lcd.o(.text)
+    LCD_NewChar                              0x000003e3   Thumb Code     0  lcd.o(.text)
+    LCD_OutDec                               0x00000415   Thumb Code     0  lcd.o(.text)
+    LCD_OutFix                               0x0000043f   Thumb Code     0  lcd.o(.text)
+    IO_Init                                  0x00000525   Thumb Code     0  io.o(.text)
+    IO_Touch                                 0x0000055b   Thumb Code     0  io.o(.text)
+    IO_HeartBeat                             0x0000057b   Thumb Code     0  io.o(.text)
+    PLL_Init                                 0x000005ad   Thumb Code     0  pll.o(.text)
+    __initial_sp                             0x20000100   Data           0  startup.o(STACK)
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x00000101
+
+  Load Region LR_1 (Base: 0x00000000, Size: 0x000005fc, Max: 0xffffffff, ABSOLUTE)
+
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x000005fc, Max: 0xffffffff, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00000000   0x0000010c   Code   RO            3  * RESET               startup.o
+    0x0000010c   0x0000016c   Code   RO           10    .text               lab6.o
+    0x00000278   0x000002ac   Code   RO           13    .text               lcd.o
+    0x00000524   0x00000088   Code   RO           16    .text               io.o
+    0x000005ac   0x00000050   Code   RO           19    .text               pll.o
+
+
+    Execution Region ER_RW (Base: 0x20000000, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+
+    **** No section assigned to this execution region ****
+
+
+    Execution Region ER_ZI (Base: 0x20000000, Size: 0x00000100, Max: 0xffffffff, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000   0x00000100   Zero   RW            1    STACK               startup.o
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+       136         26          0          0          0        212   io.o
+       364        240          0          0          0        204   lab6.o
+       684         40          0          0          0        392   lcd.o
+        80         10          0          0          0        188   pll.o
+       268        258          0          0        256        212   startup.o
+
+    ----------------------------------------------------------------------
+      1532        574          0          0        256       1208   Object Totals
+         0          0          0          0          0          0   (incl. Generated)
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+         0          0          0          0          0          0   Library Totals
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+      1532        574          0          0        256       1208   Grand Totals
+      1532        574          0          0        256       1208   ELF Image Totals
+      1532        574          0          0          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                 1532 (   1.50kB)
+    Total RW  Size (RW Data + ZI Data)               256 (   0.25kB)
+    Total ROM Size (Code + RO Data + RW Data)       1532 (   1.50kB)
+
+==============================================================================
+

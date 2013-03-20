@@ -1,0 +1,7 @@
+Dependencies for Project 'Lab6', Target 'LCD': (DO NOT MODIFY !)
+F (.\Startup.s)(0x4FE7F3DF)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1" -I "C:\Keil\ARM\INC" -I "C:\Keil\ARM\INC\Luminary" -o "Startup.o" --depend "Startup.d")
+F (.\lab6.s)(0x4FE94844)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1" -I "C:\Keil\ARM\INC" -I "C:\Keil\ARM\INC\Luminary" -o "lab6.o" --depend "lab6.d")
+F (.\LCD.s)(0x4FE94849)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1" -I "C:\Keil\ARM\INC" -I "C:\Keil\ARM\INC\Luminary" -o "LCD.o" --depend "LCD.d")
+F (.\pll.s)(0x4FE7EAF0)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1" -I "C:\Keil\ARM\INC" -I "C:\Keil\ARM\INC\Luminary" -o "pll.o" --depend "pll.d")
+F (.\SysTick.s)(0x4FE7F256)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1" -I "C:\Keil\ARM\INC" -I "C:\Keil\ARM\INC\Luminary" -o "SysTick.o" --depend "SysTick.d")
+F (..\driverlib\rvmdk\driverlib.lib)(0x4C6193FA)()

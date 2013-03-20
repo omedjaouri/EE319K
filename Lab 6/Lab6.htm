@@ -1,0 +1,164 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+<title>Static Call Graph - [C:\Users\Kevin\Documents\GitHub\EE319K\Lab 6\Lab6.axf]</title></head>
+<body><HR>
+<H1>Static Call Graph for image C:\Users\Kevin\Documents\GitHub\EE319K\Lab 6\Lab6.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Tue Mar 19 20:30:19 2013
+<BR><P>
+<H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+Call chain for Maximum Stack Depth:</H3>
+
+<P>
+<H3>
+Functions with no stack information
+</H3><UL>
+ <LI><a href="#[4]">Reset_Handler</a>
+ <LI><a href="#[5]">Start</a>
+ <LI><a href="#[8]">LCD_Open</a>
+ <LI><a href="#[11]">LCD_OutChar</a>
+ <LI><a href="#[9]">LCD_Clear</a>
+ <LI><a href="#[f]">LCD_GoTo</a>
+ <LI><a href="#[a]">LCD_OutString</a>
+ <LI><a href="#[b]">LCD_NewChar</a>
+ <LI><a href="#[e]">LCD_OutDec</a>
+ <LI><a href="#[10]">LCD_OutFix</a>
+ <LI><a href="#[7]">IO_Init</a>
+ <LI><a href="#[c]">IO_Touch</a>
+ <LI><a href="#[d]">IO_HeartBeat</a>
+ <LI><a href="#[6]">PLL_Init</a>
+ <LI><a href="#[1]">NmiSR</a>
+ <LI><a href="#[2]">FaultISR</a>
+ <LI><a href="#[3]">IntDefaultHandler</a>
+</UL>
+</UL>
+<P>
+<H3>
+Mutually Recursive functions
+</H3> <LI><a href="#[e]">LCD_OutDec</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[e]">LCD_OutDec</a><BR>
+ <LI><a href="#[1]">NmiSR</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1]">NmiSR</a><BR>
+ <LI><a href="#[2]">FaultISR</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[2]">FaultISR</a><BR>
+ <LI><a href="#[3]">IntDefaultHandler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[3]">IntDefaultHandler</a><BR>
+</UL>
+<P>
+<H3>
+Function Pointers
+</H3><UL>
+ <LI><a href="#[2]">FaultISR</a> from startup.o(RESET) referenced from startup.o(RESET)
+ <LI><a href="#[3]">IntDefaultHandler</a> from startup.o(RESET) referenced 55 times from startup.o(RESET)
+ <LI><a href="#[1]">NmiSR</a> from startup.o(RESET) referenced from startup.o(RESET)
+ <LI><a href="#[4]">Reset_Handler</a> from startup.o(RESET) referenced from startup.o(RESET)
+</UL>
+<P>
+<H3>
+Global Symbols
+</H3>
+<P><STRONG><a name="[4]"></a>Reset_Handler</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(RESET))
+<BR><BR>[Calls]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[5]"></a>Start</STRONG> (Thumb, 4 bytes, Stack size unknown bytes, lab6.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PLL_Init
+<LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutString
+<LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutFix
+<LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutDec
+<LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Open
+<LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_NewChar
+<LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GoTo
+<LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
+<LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IO_Touch
+<LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IO_Init
+<LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IO_HeartBeat
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+</UL>
+
+<P><STRONG><a name="[8]"></a>LCD_Open</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[11]"></a>LCD_OutChar</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutString
+<LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutFix
+<LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutDec
+<LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_NewChar
+</UL>
+
+<P><STRONG><a name="[9]"></a>LCD_Clear</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[f]"></a>LCD_GoTo</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[a]"></a>LCD_OutString</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutChar
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutFix
+<LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[b]"></a>LCD_NewChar</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutChar
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[e]"></a>LCD_OutDec</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutDec
+<LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutChar
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutDec
+<LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[10]"></a>LCD_OutFix</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutString
+<LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OutChar
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[7]"></a>IO_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, io.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[c]"></a>IO_Touch</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, io.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[d]"></a>IO_HeartBeat</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, io.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+
+<P><STRONG><a name="[6]"></a>PLL_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, pll.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
+</UL>
+<P>
+<H3>
+Local Symbols
+</H3>
+<P><STRONG><a name="[1]"></a>NmiSR</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(RESET))
+<BR><BR>[Calls]<UL><LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NmiSR
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NmiSR
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
+</UL>
+<P><STRONG><a name="[2]"></a>FaultISR</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(RESET))
+<BR><BR>[Calls]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FaultISR
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FaultISR
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
+</UL>
+<P><STRONG><a name="[3]"></a>IntDefaultHandler</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(RESET))
+<BR><BR>[Calls]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntDefaultHandler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntDefaultHandler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
+</UL><P>
+<H3>
+Undefined Global Symbols
+</H3><HR></body></html>
