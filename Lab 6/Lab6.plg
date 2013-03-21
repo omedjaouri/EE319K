@@ -3,19 +3,7 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Users\Kevin\Documents\GitHub\EE319K\Lab 6\Lab6.uvproj
-Project File Date:  03/19/2013
+C:\Users\Omar\Documents\GitHub\EE319K\Lab 6\Lab6.uvproj
+Project File Date:  03/20/2013
 
 <h2>Output:</h2>
-Load "C:\\Users\\Kevin\\Documents\\GitHub\\EE319K\\Lab 6\\Lab6.AXF" 
-Connecting: Mode=JTAG, Speed=1000000Hz
-Connection failed!, error code=&d
-Rebuild target 'Lab6'
-assembling Startup.s...
-assembling lab6.s...
-assembling LCD.s...
-assembling IO.s...
-assembling pll.s...
-linking...
-Program Size: Code=1532 RO-data=0 RW-data=0 ZI-data=256  
-"Lab6.axf" - 0 Error(s), 0 Warning(s).

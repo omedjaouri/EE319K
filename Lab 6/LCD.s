@@ -59,12 +59,12 @@ OutFixedOFString
 ; This is a private function
 ; Invariables: This function must not permanently modify registers R4 to R11
 outCsrNibble
-    PUSH {R4,R5,R14}
-	MOV R4, R0
+    PUSH {R4,R5,R14}						;Push registers that we plan to use onto the stack
+	MOV R4, R0								;Move the 4-bit command into R4 for manipulation
 	LDR R5, =LCD_DATA_NIBBLE_R
-	STR R4, [R5]
-	BL wait6us
-	LDR R4, =LCD_LATCH
+	STR R4, [R5]							
+	BL wait6us						
+	LDR R4, =LCD_LATCH						;
 	MOV R0, #0xFF
 	STR R0, [R4]
 	BL wait6us
@@ -105,21 +105,21 @@ outCsrNibble
 ; This is a private function
 ; Invariables: This function must not permanently modify registers R4 to R11
 outCsr
-	PUSH {R4,LR}
+	PUSH {R4,LR}							;Push R4 onto the stack to use it as a local variable
 	MOV R4, R0
 	
 	MOV R0, #0
-	LDR R1, =LCD_RS
-	STR R0, [R1]
+	LDR R1, =LCD_RS							;Set the RS Latch to 0
+	STR R0, [R1]							;
 	BL wait6us
 	
-	LSR R0, R4, #4
-	BL outCsrNibble
+	LSR R0, R4, #4							;Call outCsrNibble twice and righ shift the first 4 bits to set the 4 most significant bits
+	BL outCsrNibble		
 	MOV R0, R4
 	BL outCsrNibble
 	
 	MOV R1, #15
-	BL wait90us
+	BL wait90us								;Blind Cycle Wait 90us
 	POP  {R4,PC}
 
 ;---------------------LCD_Open---------------------
@@ -201,13 +201,13 @@ LCD_OutChar
 	STR R0, [R1]
 	BL wait6us
 	
-	LSR R0, R4, #4
+	LSR R0, R4, #4								;Outputs the most significant bits first by bit shifting right 4 times
 	BL outCsrNibble
-	MOV R0, R4
+	MOV R0, R4									;Outputs the least significant bits.
 	BL outCsrNibble
 	BL wait90us
 	
-    POP {R4,PC}
+    POP {R4,PC}									;Restores R4
 
 ;---------------------LCD_Clear---------------------
 ; clear the LCD display, send cursor to home
@@ -239,7 +239,7 @@ LCD_Clear
 ; Invariables: This function must not permanently modify registers R4 to R11
 LCD_GoTo
     PUSH {LR}
-	AND R0, R0, #0xFF
+	AND R0, R0, #0xFF									;Creates 2 ranges that the DDaddr can be between: 0x08 - 0x3F and 0x48 - 0xFFFFFFFF
 	CMP R0, #0x08
 	BLS GOMove
 	CMP R0, #0x3F
@@ -263,14 +263,14 @@ LCD_OutString
 	MOV R4, R0
 	MOV R2, #0
 STLoop
-	LDRB R0, [R4, R2]
+	LDRB R0, [R4, R2]							;Loads the first character of the string
 	CMP R0, #0
 	BEQ STDone
 	BL LCD_OutChar
-	ADD R2, #1
-	B STLoop
+	ADD R2, #1									;Increments the array pointer to get the next character of the string
+	B STLoop	
 STDone
-    POP {R4,PC}
+    POP {R4,PC}									;Restores used registers and PC
 
 
 ;-----------------------LCD_NewChar--------------------
@@ -312,19 +312,19 @@ DoneNewChar
 ; Output: none
 ; This is a public function
 ; Invariables: This function must not permanently modify registers R4 to R11
-LCD_OutDec
+LCD_OutDec									;Used Recursion to print out decimals.
     PUSH {R4,LR}
-	SUB SP, #4
-	CMP R0, #10
+	SUB SP, #4								
+	CMP R0, #10								;Check for end digit
 	BLO ODendcase
-	MOV R1, #10
+	MOV R1, #10								
 	UDIV R4, R0, R1
-	BL MOD
+	BL MOD			
 	STR R0, [SP]
 	MOV R0, R4
 	BL LCD_OutDec
 	LDR R0, [SP]
-ODendcase
+ODendcase									;Adds last digit, and restores registers and PC
 	ADD R0, #0x30
 	BL LCD_OutChar
 	ADD SP, #4
@@ -346,26 +346,26 @@ ODendcase
 ; Invariables: This function must not permanently modify registers R4 to R11
 		
 LCD_OutFix
-         PUSH {R4,LR}
-		 LDR R1, =9999
+         PUSH {R4,LR}						;Push used registers
+		 LDR R1, =9999						;Check for overflow, i.e. any number over 9999
 		 CMP R0, R1
 		 BHI OFOverflow
 		 
-		 MOV R4, R0
-		 MOV R1, #1000
-		 UDIV R0, R4, R1
-		 ADD R0, #0x30
+		 MOV R4, R0							;Determines the least significant digit (The one's place)
+		 MOV R1, #1000						;Divides input by 1000
+		 UDIV R0, R4, R1					;
+		 ADD R0, #0x30						;Converts to ASCII
 		 BL LCD_OutChar
 		 
 		 MOV R0, #0x2E
 		 BL LCD_OutChar
 		 
-		 MOV R0, R4
+		 MOV R0, R4							
 		 MOV R1, #1000
-		 BL MOD
+		 BL MOD								;Modifies the input so that it is missing the least significant bit
 		 MOV R4, R0
 		 
-		 MOV R1, #100
+		 MOV R1, #100						;Determines the ten's place
 		 UDIV R0, R4, R1
 		 ADD R0, #0x30
 		 BL LCD_OutChar
@@ -374,7 +374,7 @@ LCD_OutFix
 		 BL MOD
 		 MOV R4, R0
 		 
-		 MOV R1, #10
+		 MOV R1, #10						;Determines the hundred's place
 		 UDIV R0, R4, R1
 		 ADD R0, #0x30
 		 BL LCD_OutChar
@@ -382,15 +382,17 @@ LCD_OutFix
 		 MOV R1, #10
 		 BL MOD
 		 
-		 ADD R0, #0x30
+		 ADD R0, #0x30						;Prints the most significant digit
 		 BL LCD_OutChar
 		 
          POP {R4,PC}
 OFOverflow
-		 LDR R0, =OutFixedOFString
+		 LDR R0, =OutFixedOFString			;Outputs *.***
 		 BL LCD_OutString
 		 POP {R4,PC}
 
+
+; Lots of Wait loops and our Modulo subroutine
 MOD
 	UDIV R2, R0, R1
 	MUL R1, R2
