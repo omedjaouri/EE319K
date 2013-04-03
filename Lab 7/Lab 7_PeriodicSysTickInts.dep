@@ -1,0 +1,5 @@
+Dependencies for Project 'Lab 7', Target 'PeriodicSysTickInts': (DO NOT MODIFY !)
+F (.\Startup.s)(0x4DF13BE0)(--cpu Cortex-M3 -g --apcs=interwork --pd "__MICROLIB SETA 1" -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary --list "Startup.lst" --xref -o "Startup.o" --depend "Startup.d")
+F (.\PeriodicSysTickInts.c)(0x4FBAB7BE)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I.. -I..\..\.. -I..\inc -I..\driverlib -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary -o "periodicsystickints.o" --omf_browse "periodicsystickints.crf" --depend "periodicsystickints.d")
+F (.\SysTickInts.c)(0x4E6130B8)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I.. -I..\..\.. -I..\inc -I..\driverlib -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary -o "systickints.o" --omf_browse "systickints.crf" --depend "systickints.d")
+F (..\driverlib\rvmdk\driverlib.lib)(0x00000000)()

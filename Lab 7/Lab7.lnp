@@ -1,0 +1,4 @@
+--cpu Cortex-M3 "startup.o" "systickints.o" "lab7.o" "dac.o" "piano.o" "sound.o" C:\Users\Kevin\Documents\GitHub\EE319K\driverlib\rvmdk\driverlib.lib 
+--library_type=microlib --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\Lab7.map" -o Lab7.axf

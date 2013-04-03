@@ -1,0 +1,19 @@
+Dependencies for Project 'Lab 7', Target 'Lab7': (DO NOT MODIFY !)
+F (.\Startup.s)(0x4DF13BE0)(--cpu Cortex-M3 -g --apcs=interwork --pd "__MICROLIB SETA 1" -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary --list "Startup.lst" --xref -o "Startup.o" --depend "Startup.d")
+F (.\SysTickInts.c)(0x515B6844)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I.. -I..\..\.. -I..\inc -I..\driverlib -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary -o "systickints.o" --omf_browse "systickints.crf" --depend "systickints.d")
+I (..\inc\hw_types.h)(0x4C6193FC)
+I (..\driverlib\sysctl.h)(0x4C6193FA)
+I (dac.h)(0x515B5DFB)
+F (.\Lab7.c)(0x515BA4CF)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I.. -I..\..\.. -I..\inc -I..\driverlib -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary -o "lab7.o" --omf_browse "lab7.crf" --depend "lab7.d")
+I (..\inc/hw_types.h)(0x4C6193FC)
+I (..\driverlib/sysctl.h)(0x4C6193FA)
+I (SysTickInts.h)(0x515B60FB)
+I (Sound.h)(0x515BA35E)
+I (Piano.h)(0x515B64F9)
+F (.\dac.c)(0x515B6022)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I.. -I..\..\.. -I..\inc -I..\driverlib -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary -o "dac.o" --omf_browse "dac.crf" --depend "dac.d")
+F (.\Piano.c)(0x515B6427)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I.. -I..\..\.. -I..\inc -I..\driverlib -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary -o "piano.o" --omf_browse "piano.crf" --depend "piano.d")
+F (.\Sound.c)(0x515BBDF1)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I.. -I..\..\.. -I..\inc -I..\driverlib -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Luminary -o "sound.o" --omf_browse "sound.crf" --depend "sound.d")
+I (dac.h)(0x515B5DFB)
+I (Sound.h)(0x515BA35E)
+I (SysTickInts.h)(0x515B60FB)
+F (..\driverlib\rvmdk\driverlib.lib)(0x4C6193FA)()
