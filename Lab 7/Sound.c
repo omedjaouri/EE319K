@@ -5,7 +5,8 @@
 
 #define GPIO_PORTG2             (*((volatile unsigned long *)0x40026010))
 
-int count;
+int count;	// Index to sine.
+short inc;	// Flag to disable incrementing count.
 
 const unsigned char sine[32] = {
 	128,153,177,199,218,234,245,253,255,253,
@@ -22,8 +23,7 @@ const unsigned long freqs[] = {
 	1582, 1493, 1409, 1330
 };
 
-__asm void wait1ms(void)
-{
+__asm void wait1ms(void){
 	LDR R0, =0x411A;
 busy_loop;
 	SUBS R0, R0, #0x01;
@@ -31,22 +31,23 @@ busy_loop;
 	BX LR;
 }
 
-void waitsecs(unsigned long dur)
-{
+void waitsecs(unsigned long dur){
 	int i;
 	for (i = 0; i < dur; i++)
 		wait1ms();
 }
 
-void Sound_Init(void)
-{
+void Sound_Init(void){
 	count = 0;
 	DAC_Init();
 	SysTick_Init(50000);
 }
 
-void Sound_Play(int note)
-{ SysTick_SetReload(freqs[note]); }
+void Sound_Play(int note){
+	if (note == -1) inc = 0;
+	else inc = 1;
+	SysTick_SetReload(freqs[note]);
+}
 
 void Sound_PlaySong(
 	const note *song, 
@@ -63,18 +64,11 @@ void Sound_PlaySong(
 	}
 }
 
-void advance_note()
-{
-	if (count >= 32)
-		count = 0;
-	DAC_Out(sine[count]);
-	count++;
-}
-
 // Interrupt service routine
 // Executed every 20ns*(period)
-void SysTick_Handler(void)
-{
+void SysTick_Handler(void){
   GPIO_PORTG2 ^= 0x04;        // toggle PD0
-	advance_note();
+	if (count >= 32) count = 0;
+	DAC_Out(sine[count]);
+	count += inc;
 }
