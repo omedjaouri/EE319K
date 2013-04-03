@@ -57,13 +57,23 @@ const note green_greens[90] = {
 	{D,8},{G,4},{A-O,3},{A-O,1}
 };
 
-int main(void){       // bus clock at 50 MHz
+int main(void){
+	int tone;// bus clock at 50 MHz
   SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN |
                  SYSCTL_XTAL_8MHZ);
   SysTick_Init(50000);     // initialize SysTick timer
   EnableInterrupts();
 	Piano_Init();
 	Sound_Init();
+	while(1){
+		tone = Piano_In();
+		if (tone==1){Sound_Play(D);}
+		else if (tone==2){Sound_Play(F);}
+		else if (tone==4){Sound_Play(A);}
+		else{Sound_Play(-1);}
+	}
+	
+	
 	Sound_PlaySong(green_greens, 90, 1, 21);
   while(1){                // interrupts every 1ms
     WaitForInterrupt();

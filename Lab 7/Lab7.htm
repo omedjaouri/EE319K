@@ -1,13 +1,13 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html><head>
-<title>Static Call Graph - [C:\Users\Kevin\Documents\GitHub\EE319K\Lab 7\Lab7.axf]</title></head>
+<title>Static Call Graph - [C:\Users\Omar\Documents\GitHub\EE319K\Lab 7\Lab7.axf]</title></head>
 <body><HR>
-<H1>Static Call Graph for image C:\Users\Kevin\Documents\GitHub\EE319K\Lab 7\Lab7.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Wed Apr 03 15:31:09 2013
+<H1>Static Call Graph for image C:\Users\Omar\Documents\GitHub\EE319K\Lab 7\Lab7.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Wed Apr 03 16:18:58 2013
 <BR><P>
-<H3>Maximum Stack Usage =         48 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         24 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-main &rArr; Sound_PlaySong &rArr; waitsecs
+main &rArr; SysCtlClockSet
 <P>
 <H3>
 Functions with no stack information
@@ -17,7 +17,7 @@ Functions with no stack information
  <LI><a href="#[42]">EnableInterrupts</a>
  <LI><a href="#[53]">StartCritical</a>
  <LI><a href="#[54]">EndCritical</a>
- <LI><a href="#[46]">WaitForInterrupt</a>
+ <LI><a href="#[55]">WaitForInterrupt</a>
 </UL>
 </UL>
 <P>
@@ -328,7 +328,7 @@ Global Symbols
 
 <P><STRONG><a name="[51]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8.o(.ARM.Collect$$$$00000009))
 
-<P><STRONG><a name="[48]"></a>wait1ms</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, sound.o(.emb_text))
+<P><STRONG><a name="[48]"></a>wait1ms</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, sound.o(.emb_text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waitsecs
 </UL>
 
@@ -349,29 +349,27 @@ Global Symbols
 
 <P><STRONG><a name="[54]"></a>EndCritical</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text), UNUSED)
 
-<P><STRONG><a name="[46]"></a>WaitForInterrupt</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
+<P><STRONG><a name="[55]"></a>WaitForInterrupt</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text), UNUSED)
 
 <P><STRONG><a name="[41]"></a>SysTick_Init</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, systickints.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Init
 <LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4b]"></a>SysTick_SetReload</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, systickints.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Play
+<P><STRONG><a name="[4a]"></a>SysTick_SetReload</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, systickints.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Play
 </UL>
 
-<P><STRONG><a name="[3a]"></a>main</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, lab7.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48 + Unknown Stack Size
-<LI>Call Chain = main &rArr; Sound_PlaySong &rArr; waitsecs
+<P><STRONG><a name="[3a]"></a>main</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, lab7.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24 + Unknown Stack Size
+<LI>Call Chain = main &rArr; SysCtlClockSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockSet
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_PlaySong
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Play
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Init
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Piano_Init
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Piano_In
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitForInterrupt
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry8.o(.ARM.Collect$$$$00000009)
@@ -384,18 +382,18 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;advance_note
 </UL>
 
-<P><STRONG><a name="[55]"></a>Piano_In</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, piano.o(.text), UNUSED)
+<P><STRONG><a name="[45]"></a>Piano_In</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, piano.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
 
 <P><STRONG><a name="[43]"></a>Piano_Init</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, piano.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[47]"></a>waitsecs</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, sound.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = waitsecs
+<P><STRONG><a name="[47]"></a>waitsecs</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, sound.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait1ms
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait1ms
-</UL>
-<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_PlaySong
+<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_PlaySong
 </UL>
 
 <P><STRONG><a name="[44]"></a>Sound_Init</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, sound.o(.text))
@@ -407,21 +405,18 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4a]"></a>Sound_Play</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, sound.o(.text))
+<P><STRONG><a name="[46]"></a>Sound_Play</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, sound.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Sound_Play
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_SetReload
+<BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_SetReload
 </UL>
-<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_PlaySong
+<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_PlaySong
+<LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[45]"></a>Sound_PlaySong</STRONG> (Thumb, 56 bytes, Stack size 32 bytes, sound.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Sound_PlaySong &rArr; waitsecs
-</UL>
-<BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Play
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waitsecs
-</UL>
-<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[4b]"></a>Sound_PlaySong</STRONG> (Thumb, 56 bytes, Stack size 32 bytes, sound.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;waitsecs
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sound_Play
 </UL>
 
 <P><STRONG><a name="[4c]"></a>advance_note</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, sound.o(.text))

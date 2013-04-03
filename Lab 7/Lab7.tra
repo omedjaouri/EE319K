@@ -9,14 +9,14 @@
 ### List of Objects: adding '"sound.o"'
 ### List of Objects: adding '"..\driverlib\rvmdk\driverlib.lib"'
 ### ADS-LD Command completed:
---cpu Cortex-M3 "startup.o" "systickints.o" "lab7.o" "dac.o" "piano.o" "sound.o" C:\Users\Kevin\Documents\GitHub\EE319K\driverlib\rvmdk\driverlib.lib 
+--cpu Cortex-M3 "startup.o" "systickints.o" "lab7.o" "dac.o" "piano.o" "sound.o" C:\Users\Omar\Documents\GitHub\EE319K\driverlib\rvmdk\driverlib.lib 
 --library_type=microlib --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
  --list ".\Lab7.map" -o Lab7.axf### Preparing Environment (PrepEnvAds)
 ### ADS-LD Output File: 'Lab7.axf'
 ### ADS-LD Command File: 'Lab7.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'Lab7.lnp', Handle=0x00000388
+### Creating CmdFile 'Lab7.lnp', Handle=0x000004F0
 ### Writing '.lnp' file
 ### ADS-LD Command file 'Lab7.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

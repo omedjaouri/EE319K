@@ -3,7 +3,7 @@
 #define SYSCTL_RCGC2_GPIOG      0x00000040  // port D Clock Gating Control
 #define GPIO_PORTG_DIR_R        (*((volatile unsigned long *)0x40026400))
 #define GPIO_PORTG_DEN_R        (*((volatile unsigned long *)0x4002651C))
-#define PIANO_IN								(*((volatile unsigned long *)0x40026010))
+#define PIANO_IN								(*((volatile unsigned long *)0x400261C0 ))
 
 int Piano_In(void)
 {
